@@ -8,6 +8,23 @@
 	
 	<!-- Tailwind CSS CDN -->
 	<script src="https://cdn.tailwindcss.com"></script>
+	<script>
+		tailwind.config = {
+			theme: {
+				extend: {
+					fontFamily: {
+						sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+					},
+					colors: {
+						dark: {
+							900: '#0f172a',
+							950: '#020617',
+						}
+					}
+				}
+			}
+		}
+	</script>
 	<!-- Google Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -91,7 +108,7 @@
 				</div>
 
 				<div class="pt-2">
-					<button type="submit" class="w-full py-3.5 px-4 bg-dark-900 hover:bg-amber-600 text-white rounded-xl text-sm font-bold transition shadow-lg shadow-slate-950/20">
+					<button type="submit" class="w-full py-3.5 px-4 bg-slate-900 hover:bg-amber-600 text-white rounded-xl text-sm font-bold transition shadow-lg shadow-slate-900/20">
 						Masuk ke Dashboard →
 					</button>
 				</div>
