@@ -41,13 +41,13 @@
 		}
 	</style>
 </head>
-<body class="flex min-h-screen bg-slate-100 text-slate-800 antialiased">
+<body class="flex h-screen overflow-hidden bg-slate-100 text-slate-800 antialiased">
 
 	<!-- Sidebar -->
-	<aside class="w-64 bg-dark-950 text-slate-300 flex-shrink-0 hidden md:flex flex-col justify-between border-r border-slate-800 z-30">
-		<div>
+	<aside id="adminSidebar" class="w-64 h-screen bg-dark-950 text-slate-300 flex-shrink-0 hidden md:flex flex-col justify-between border-r border-slate-800 z-30">
+		<div class="overflow-y-auto flex-1">
 			<!-- Sidebar Brand -->
-			<div class="h-20 flex items-center gap-3 px-6 border-b border-slate-800">
+			<div class="h-20 flex items-center gap-3 px-6 border-b border-slate-800 flex-shrink-0">
 				<div class="w-9 h-9 bg-amber-600 text-white rounded-xl flex items-center justify-center font-extrabold text-base shadow">
 					MD
 				</div>
@@ -89,7 +89,7 @@
 		</div>
 
 		<!-- Bottom External Link -->
-		<div class="p-4 border-t border-slate-800 space-y-2">
+		<div class="p-4 border-t border-slate-800 space-y-2 flex-shrink-0">
 			<a href="<?= base_url() ?>" target="_blank" class="flex items-center justify-between px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-xs text-amber-400 font-semibold transition">
 				<span>Lihat Website Toko</span>
 				<span>↗</span>
@@ -100,12 +100,17 @@
 		</div>
 	</aside>
 
-	<!-- Main Content Area -->
-	<div class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+	<!-- Main Wrapper -->
+	<div class="flex-1 flex flex-col h-screen overflow-hidden min-w-0">
 		
-		<!-- Top Navbar -->
-		<header class="h-20 bg-white border-b border-slate-200 px-6 sm:px-8 flex items-center justify-between sticky top-0 z-20 shadow-sm">
+		<!-- Fixed Header (Topbar) - Pinned at top, never scrolls away -->
+		<header class="h-20 bg-white border-b border-slate-200 px-6 sm:px-8 flex items-center justify-between flex-shrink-0 z-20 shadow-sm">
 			<div class="flex items-center gap-4">
+				<button id="adminSidebarToggle" type="button" class="md:hidden p-2 rounded-xl text-slate-600 hover:text-dark-900 hover:bg-slate-100 focus:outline-none">
+					<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+					</svg>
+				</button>
 				<h2 class="text-lg sm:text-xl font-bold text-dark-900 tracking-tight">
 					<?= isset($page_title) ? html_escape($page_title) : 'Dashboard Admin' ?>
 				</h2>
@@ -126,28 +131,31 @@
 			</div>
 		</header>
 
-		<!-- Flash Message Container -->
-		<div class="px-6 sm:px-8 pt-6">
-			<?php if ($this->session->flashdata('success')): ?>
-				<div class="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold flex items-center justify-between shadow-sm">
-					<div class="flex items-center gap-2">
-						<span>✓</span>
-						<span><?= $this->session->flashdata('success') ?></span>
+		<!-- Scrollable Content Viewport -->
+		<div class="flex-1 overflow-y-auto flex flex-col min-w-0">
+			
+			<!-- Flash Message Container -->
+			<div class="px-6 sm:px-8 pt-6">
+				<?php if ($this->session->flashdata('success')): ?>
+					<div class="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold flex items-center justify-between shadow-sm">
+						<div class="flex items-center gap-2">
+							<span>✓</span>
+							<span><?= $this->session->flashdata('success') ?></span>
+						</div>
+						<button type="button" onclick="this.parentElement.remove()" class="text-emerald-500 hover:text-emerald-700">✕</button>
 					</div>
-					<button type="button" onclick="this.parentElement.remove()" class="text-emerald-500 hover:text-emerald-700">✕</button>
-				</div>
-			<?php endif; ?>
+				<?php endif; ?>
 
-			<?php if ($this->session->flashdata('error')): ?>
-				<div class="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs font-semibold flex items-center justify-between shadow-sm">
-					<div class="flex items-center gap-2">
-						<span>⚠️</span>
-						<span><?= $this->session->flashdata('error') ?></span>
+				<?php if ($this->session->flashdata('error')): ?>
+					<div class="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs font-semibold flex items-center justify-between shadow-sm">
+						<div class="flex items-center gap-2">
+							<span>⚠️</span>
+							<span><?= $this->session->flashdata('error') ?></span>
+						</div>
+						<button type="button" onclick="this.parentElement.remove()" class="text-rose-500 hover:text-rose-700">✕</button>
 					</div>
-					<button type="button" onclick="this.parentElement.remove()" class="text-rose-500 hover:text-rose-700">✕</button>
-				</div>
-			<?php endif; ?>
-		</div>
+				<?php endif; ?>
+			</div>
 
-		<!-- Page Body -->
-		<main class="p-6 sm:px-8 pb-16 flex-1">
+			<!-- Page Body -->
+			<main class="p-6 sm:px-8 pb-16 flex-1">
