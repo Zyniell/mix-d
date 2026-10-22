@@ -67,30 +67,29 @@
 
 	<div class="w-full max-w-md relative z-10">
 		
-		<!-- Brand Header -->
-		<div class="text-center mb-8">
-			<a href="<?= base_url() ?>" class="inline-flex items-center gap-3.5 group">
-				<div class="w-12 h-12 bg-stone-900 border border-brand-500/40 text-white rounded-2xl flex items-center justify-center font-serif font-black text-2xl shadow-xl group-hover:border-brand-500 transition">
-					M<span class="text-brand-400">D</span>
-				</div>
-				<div class="text-left">
-					<div class="flex items-center gap-1.5">
-						<span class="font-serif font-extrabold text-2xl tracking-tight text-white">MIX-D</span>
-						<span class="w-1.5 h-1.5 rounded-full bg-brand-500 inline-block"></span>
-					</div>
-					<span class="block text-[10px] font-bold tracking-[0.2em] text-brand-400 uppercase">Admin Portal</span>
-				</div>
-			</a>
-			<p class="text-xs text-stone-400 mt-3 font-medium">Sistem Pengelolaan Toko Sepatu Pria Mix-D</p>
-		</div>
-
 		<!-- Login Card -->
 		<div class="bg-white rounded-3xl p-8 sm:p-10 shadow-2xl border border-stone-200">
 			
+			<!-- Brand Header -->
+			<div class="text-center mb-6 pb-6 border-b border-stone-100">
+				<a href="<?= base_url() ?>" class="inline-flex items-center gap-3.5 group">
+					<div class="w-12 h-12 bg-stone-900 border border-brand-500/40 text-white rounded-2xl flex items-center justify-center font-serif font-black text-2xl shadow-md group-hover:border-brand-500 transition">
+						M<span class="text-brand-400">D</span>
+					</div>
+					<div class="text-left">
+						<div class="flex items-center gap-1.5">
+							<span class="font-serif font-extrabold text-2xl tracking-tight text-stone-900">MIX-D</span>
+							<span class="w-1.5 h-1.5 rounded-full bg-brand-500 inline-block"></span>
+						</div>
+						<span class="block text-[10px] font-bold tracking-[0.2em] text-brand-600 uppercase">Admin Portal</span>
+					</div>
+				</a>
+				<p class="text-xs text-stone-500 mt-2.5 font-medium">Sistem Pengelolaan Toko Sepatu Pria Mix-D</p>
+			</div>
+
 			<!-- Validation Error Messages -->
-
-
 			<?php if (validation_errors()): ?>
+
 				<div class="mb-5 p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs">
 					<?= validation_errors() ?>
 				</div>
