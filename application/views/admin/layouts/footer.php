@@ -2,12 +2,15 @@
 		</main>
 
 		<!-- Admin Footer -->
-		<footer class="bg-white border-t border-slate-200 px-6 sm:px-8 py-4 text-xs text-slate-400 flex flex-col sm:flex-row justify-between items-center gap-2 flex-shrink-0">
-			<div>
-				&copy; <?= date('Y') ?> <strong>Mix-D Men's Footwear</strong>. Panel Pengelolaan Toko Sepatu Pria.
+		<footer class="bg-white border-t border-stone-200/80 px-6 sm:px-8 py-4 text-xs text-stone-400 flex flex-col sm:flex-row justify-between items-center gap-2 flex-shrink-0">
+			<div class="flex items-center gap-2">
+				<span>&copy; <?= date('Y') ?></span>
+				<strong class="font-serif text-stone-800">MIX-D</strong>
+				<span class="text-stone-300">|</span>
+				<span class="text-stone-500">Panel Manajemen Sepatu Pria</span>
 			</div>
-			<div>
-				CI 3.1.13 | PHP <?= phpversion() ?>
+			<div class="font-mono text-[11px] text-stone-400">
+				CodeIgniter 3.1.13 &bull; PHP <?= phpversion() ?>
 			</div>
 		</footer>
 
@@ -29,3 +32,4 @@
 	</script>
 </body>
 </html>
+
