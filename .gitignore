@@ -30,3 +30,9 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.sublime-project
 /tests/tests/
 /tests/results/
+
+# Local workspace & agent configurations
+.agents/
+AGENTS.md
+skills-lock.json
+database.sql
