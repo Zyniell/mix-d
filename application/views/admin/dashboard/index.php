@@ -2,7 +2,39 @@
 
 <div class="space-y-8">
 	
-	<!-- Top Metric Cards (Vector SVGs instead of cartoon emojis) -->
+	<!-- 1. Grafik Kunjungan Website (Visitor Trend Analytics 7 Days) -->
+	<div class="bg-white rounded-3xl border border-stone-200/80 p-6 sm:p-8 shadow-card">
+		<div class="mb-6">
+			<h3 class="text-base font-serif font-bold text-stone-950 flex items-center gap-2">
+				<span>Grafik Kunjungan Website (7 Hari Terakhir)</span>
+			</h3>
+			<p class="text-xs text-stone-500 mt-0.5">Statistik jumlah pengunjung unik per hari untuk memantau traffic toko.</p>
+		</div>
+
+		<div class="grid grid-cols-2 sm:grid-cols-7 gap-3">
+			<?php 
+			$maxVisits = !empty($visitor_stats_7d) ? max(max(array_values($visitor_stats_7d)), 1) : 1;
+			foreach ($visitor_stats_7d as $date => $visits): 
+				$pct = round(($visits / $maxVisits) * 100);
+				$dayLabel = date('D, d M', strtotime($date));
+			?>
+				<div class="bg-stone-50 border border-stone-200/80 rounded-2xl p-4 text-center flex flex-col justify-between">
+					<div class="text-[11px] font-bold text-stone-500"><?= $dayLabel ?></div>
+					
+					<div class="my-3">
+						<div class="text-2xl font-serif font-bold text-brand-700 font-tabular"><?= $visits ?></div>
+						<span class="text-[10px] text-stone-400 uppercase tracking-wider">Kunjungan</span>
+					</div>
+
+					<div class="w-full bg-stone-200 h-2 rounded-full overflow-hidden">
+						<div class="bg-brand-600 h-2 rounded-full" style="width: <?= max(6, $pct) ?>%"></div>
+					</div>
+				</div>
+			<?php endforeach; ?>
+		</div>
+	</div>
+
+	<!-- 2. Top Metric Cards -->
 	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
 		
 		<!-- Total Produk -->
@@ -63,28 +95,7 @@
 
 	</div>
 
-	<!-- Quick Action Command Bar -->
-	<div class="bg-stone-950 p-6 sm:p-8 rounded-3xl text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 border border-stone-800 relative overflow-hidden">
-		<div class="absolute inset-0 bg-noise opacity-30 pointer-events-none"></div>
-		<div class="space-y-1.5 text-center md:text-left relative z-10">
-			<span class="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-400 block">Pusat Kendali Toko</span>
-			<h3 class="text-xl font-serif font-bold">Aksi Cepat Manajemen Katalog</h3>
-			<p class="text-xs text-stone-400">Tambahkan model sepatu baru, perbarui kategori, atau atur nomor WhatsApp pemesanan.</p>
-		</div>
-		<div class="flex flex-wrap items-center gap-2.5 relative z-10">
-			<a href="<?= base_url('admin/products/create') ?>" class="px-4 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs transition active:scale-95 shadow-sm border border-brand-500/30">
-				+ Tambah Produk Baru
-			</a>
-			<a href="<?= base_url('admin/categories/create') ?>" class="px-4 py-2.5 rounded-xl bg-stone-900 hover:bg-stone-800 text-stone-200 font-bold text-xs transition border border-stone-800 active:scale-95">
-				+ Tambah Kategori
-			</a>
-			<a href="<?= base_url('admin/settings') ?>" class="px-4 py-2.5 rounded-xl bg-stone-900 hover:bg-stone-800 text-stone-200 font-bold text-xs transition border border-stone-800 active:scale-95">
-				⚙️ Atur No. WA Toko
-			</a>
-		</div>
-	</div>
-
-	<!-- Top Viewed Shoes Table (Essential Feature Requirement) -->
+	<!-- 3. Sepatu Paling Banyak Dilihat (Top Views) -->
 	<div class="bg-white rounded-3xl border border-stone-200/80 overflow-hidden shadow-card">
 		<div class="p-5 sm:px-6 border-b border-stone-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
 			<div>
@@ -184,37 +195,25 @@
 		</div>
 	</div>
 
-	<!-- Visitor Trend Analytics (7 Days) -->
-	<div class="bg-white rounded-3xl border border-stone-200/80 p-6 sm:p-8 shadow-card">
-		<div class="mb-6">
-			<h3 class="text-base font-serif font-bold text-stone-950 flex items-center gap-2">
-				<span>Grafik Kunjungan Website (7 Hari Terakhir)</span>
-			</h3>
-			<p class="text-xs text-stone-500 mt-0.5">Statistik jumlah pengunjung unik per hari untuk memantau traffic toko.</p>
+	<!-- 4. Pusat Kendali Toko (Quick Action Command Bar) -->
+	<div class="bg-stone-950 p-6 sm:p-8 rounded-3xl text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 border border-stone-800 relative overflow-hidden">
+		<div class="absolute inset-0 bg-noise opacity-30 pointer-events-none"></div>
+		<div class="space-y-1.5 text-center md:text-left relative z-10">
+			<span class="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-400 block">Pusat Kendali Toko</span>
+			<h3 class="text-xl font-serif font-bold">Aksi Cepat Manajemen Katalog</h3>
+			<p class="text-xs text-stone-400">Tambahkan model sepatu baru, perbarui kategori, atau atur nomor WhatsApp pemesanan.</p>
 		</div>
-
-		<div class="grid grid-cols-2 sm:grid-cols-7 gap-3">
-			<?php 
-			$maxVisits = !empty($visitor_stats_7d) ? max(max(array_values($visitor_stats_7d)), 1) : 1;
-			foreach ($visitor_stats_7d as $date => $visits): 
-				$pct = round(($visits / $maxVisits) * 100);
-				$dayLabel = date('D, d M', strtotime($date));
-			?>
-				<div class="bg-stone-50 border border-stone-200/80 rounded-2xl p-4 text-center flex flex-col justify-between">
-					<div class="text-[11px] font-bold text-stone-500"><?= $dayLabel ?></div>
-					
-					<div class="my-3">
-						<div class="text-2xl font-serif font-bold text-brand-700 font-tabular"><?= $visits ?></div>
-						<span class="text-[10px] text-stone-400 uppercase tracking-wider">Kunjungan</span>
-					</div>
-
-					<div class="w-full bg-stone-200 h-2 rounded-full overflow-hidden">
-						<div class="bg-brand-600 h-2 rounded-full" style="width: <?= max(6, $pct) ?>%"></div>
-					</div>
-				</div>
-			<?php endforeach; ?>
+		<div class="flex flex-wrap items-center gap-2.5 relative z-10">
+			<a href="<?= base_url('admin/products/create') ?>" class="px-4 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs transition active:scale-95 shadow-sm border border-brand-500/30">
+				+ Tambah Produk Baru
+			</a>
+			<a href="<?= base_url('admin/categories/create') ?>" class="px-4 py-2.5 rounded-xl bg-stone-900 hover:bg-stone-800 text-stone-200 font-bold text-xs transition border border-stone-800 active:scale-95">
+				+ Tambah Kategori
+			</a>
+			<a href="<?= base_url('admin/settings') ?>" class="px-4 py-2.5 rounded-xl bg-stone-900 hover:bg-stone-800 text-stone-200 font-bold text-xs transition border border-stone-800 active:scale-95">
+				⚙️ Atur No. WA Toko
+			</a>
 		</div>
 	</div>
 
 </div>
-
